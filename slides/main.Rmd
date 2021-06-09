@@ -46,6 +46,32 @@ class: inverse, center, middle
 
 ---
 
+# Load [**devtools**](https://devtools.r-lib.org) and [**usethis**](https://usethis.r-lib.org) by default
+
+https://usethis.r-lib.org/reference/rprofile-helper.html
+
+These two functions open your `.Rprofile` and give you the code you need to paste in:
+
+- `usethis::use_devtools()`: makes [**devtools**](https://devtools.r-lib.org) available in interactive sessions.
+- `usethis::use_usethis()`: makes [**usethis**](https://usethis.r-lib.org) available in interactive sessions.
+
+Your `.Rprofile` then looks like:
+```{r eval=FALSE}
+if (interactive()) {
+  # Loads usethis and all other devtools packages
+  suppressMessages(require(devtools)) 
+}
+```
+
+```{r eval=FALSE}
+if (interactive()) {
+  # Only loads usethis
+  suppressMessages(require(usethis))
+}
+```
+
+---
+
 # Setting your Git credentials properly
 
 - Log into your [GitHub](https://github.com/) account.
@@ -71,9 +97,7 @@ usethis::edit_r_profile()
 
 ```{r eval=FALSE}
 if (interactive()) {
-  suppressMessages(require(stats))
   suppressMessages(require(devtools))
-  suppressMessages(require(tidyverse))
 }
 
 options(
