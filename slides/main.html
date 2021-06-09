@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 ## ⚔<br/>with usethis
 ### Aymeric Stamm
 ### CNRS
-### 2021/06/08 (updated: 2021-06-08)
+### 2021/06/08 (updated: 2021-06-09)
 
 ---
 
@@ -113,14 +113,60 @@ create_package(path = "MYPATH")
 
 ---
 
-# README
+# Make your package a Git repo
 
-- Create a `README` file that briefly explains what your package does (it will appear on your GitHub project’s homepage)
+
+```r
+use_git()
+```
+
+- Initialises a Git repository.
+- Adds important files to `.gitignore`.
+- If user consents, makes an initial commit.
+
+---
+
+# Make your package a GitHub project
+
+
+```r
+use_github()
+```
+
+takes a local project and:
+- Checks that the initial state is good to go:
+  - Project is already a Git repo.
+  - Current branch is the default branch, e.g. `master` or `main`.
+  - No uncommitted changes.
+  - No pre-existing `origin` remote.
+- Creates an associated repo on GitHub.
+- Adds that GitHub repo to your local repo as the `origin` remote.
+- Makes an initial push to GitHub.
+- Calls [`use_github_links()`](https://usethis.r-lib.org/reference/use_github_links.html), if the project is an R package.
+- Configures `origin/DEFAULT` to be the upstream branch of the local `DEFAULT` branch, e.g. `master` or `main`.
+
+---
+
+# README - Your project's showcase
+
+- Create a `README` file that briefly explains what your package does (it will serve as showcase on your GitHub project’s homepage).
   
   ```r
   usethis::use_readme_rmd()
   ```
-- Open the file `README.Rmd` and knit it.
+  This function creates skeleton README files with sections for
+  - a high-level description of the package and its goals.
+  - R code to install from GitHub, if GitHub usage detected.
+  - a basic example.
+
+- Edit the `README.Rmd` file that just popped up by filling at least:
+  - A section *Installation* explaining how users can install your software.
+  - A section *Basic Usage* showing how to use the most important functions in your software.
+- Knit it to obtain `README.md` using
+  
+  ```r
+  rmarkdown::render(input = 'README.Rmd', encoding = 'UTF-8')
+  ```
 
 ---
 
@@ -158,40 +204,6 @@ use_ccby_license()
 use_proprietary_license(copyright_holder)
 ```
 ]
-
----
-
-# Make your package a Git repo
-
-
-```r
-use_git()
-```
-
-- Initialises a Git repository.
-- Adds important files to `.gitignore`.
-- If user consents, makes an initial commit.
-
----
-
-# Make your package a GitHub project
-
-
-```r
-use_github()
-```
-
-takes a local project and:
-- Checks that the initial state is good to go:
-  - Project is already a Git repo.
-  - Current branch is the default branch, e.g. `master` or `main`.
-  - No uncommitted changes.
-  - No pre-existing `origin` remote.
-- Creates an associated repo on GitHub.
-- Adds that GitHub repo to your local repo as the `origin` remote.
-- Makes an initial push to GitHub.
-- Calls [`use_github_links()`](https://usethis.r-lib.org/reference/use_github_links.html), if the project is an R package.
-- Configures `origin/DEFAULT` to be the upstream branch of the local `DEFAULT` branch, e.g. `master` or `main`.
 
 ---
 
